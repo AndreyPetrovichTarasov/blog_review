@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 
 def index(request):
@@ -12,5 +13,8 @@ def index(request):
 
 def contact(request):
     if request.method == 'POST':
-        print(**request.POST)
+        name = request.POST.get('name')
+        massage = request.POST.get('message')
+
+        return HttpResponse(f'Thank you {name}! Massege get')
     return render(request, 'main/contact.html')
